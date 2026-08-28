@@ -31,9 +31,11 @@ after each edit — frame colours occasionally need a full Chrome restart.
 ```sh
 node scripts/validate-theme.mjs   # check the manifest
 ./scripts/package.sh              # → dist/one-dark-<version>.zip
+./scripts/render-store-assets.sh  # → store/*.png for the Web Store listing
 ```
 
-No dependencies; Node 24 and `zip` are all you need.
+No dependencies; Node 24 and `zip` are all you need. Rendering the listing images
+additionally needs Chrome, which you have if you are developing a Chrome theme.
 
 `scripts/validate-theme.mjs` checks every key against the tables Chrome actually reads
 — `kOverwritableColorTable`, `kTintTable`, `kDisplayProperties` and the image table in
@@ -68,6 +70,15 @@ git commit -am 'One Dark 1.1.0' && git push origin main
 
 Pushing a `v*` tag publishes the same way, and additionally fails if the tag disagrees
 with the manifest — a mismatched version ships a zip the Web Store rejects as a duplicate.
+
+## Publishing
+
+[`store/`](store) holds the Web Store material: [`listing.md`](store/listing.md) with the
+copy and privacy answers, plus the 440×280 promo tile and 128×128 store icon rendered
+from HTML by `./scripts/render-store-assets.sh`. The step-by-step submission checklist is
+in [`theme/README.md`](theme/README.md#web-store-notes). Screenshots are the one asset
+that cannot be generated — the theme paints browser chrome, so they have to be captured
+from a real themed window.
 
 ## Notes
 

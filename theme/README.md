@@ -139,10 +139,28 @@ one at a time.
 
 ## Web Store notes
 
-`version` must be bumped on every upload; select the theme category during upload. The
-listing needs 1280×800 (or 640×400) screenshots and a 440×280 promo tile — capture
-those from a real themed Chrome window, not from the HTML mockup. No logo exists for
-this theme; render "One Dark" in Geist 600 if a mark is needed.
+Listing copy, the promo tile and the store icon live in [`store/`](../store); regenerate
+the images with `./scripts/render-store-assets.sh`. Submission checklist:
+
+1. **Register** at the [Developer Dashboard](https://chrome.google.com/webstore/devconsole)
+   — one-time fee, and a verified contact email, before anything can be published.
+2. **Bump `version`** in `manifest.json` if this is not the first upload. The Web Store
+   rejects a re-upload at an existing version, the same constraint CI enforces when it
+   decides whether to cut a release.
+3. **Get the zip** — `./scripts/package.sh`, or the asset from the matching
+   [GitHub release](https://github.com/rzem-ai/one-dark-chrome-theme/releases).
+4. **Capture screenshots**, 1280×800 or 640×400, from a real themed Chrome window — the
+   theme paints browser chrome, which no page-level capture or HTML mockup can produce.
+   The testing checklist above doubles as a shot list.
+5. **Upload the listing assets.** The 128×128 store icon is uploaded *in the console*,
+   not declared in the manifest — `icons` is one of the keys a theme must not carry, so
+   the absence of an icon in `manifest.json` is correct, not an omission to fix.
+6. **Category: Themes.** The short description is inherited from `manifest.json`'s
+   `description`; the long copy is in [`store/listing.md`](../store/listing.md).
+7. **Complete the privacy tab** — trivial here (no permissions, no remote code, no data
+   collection) but still mandatory before the item can be submitted.
+8. **Submit**, then publish on approval. Set the item unlisted first if you want to
+   inspect the live listing before it becomes discoverable.
 
 If you ever add images they must be PNG, or they won't render
 ([crbug.com/1200459](https://crbug.com/1200459)). Images override colours and make the

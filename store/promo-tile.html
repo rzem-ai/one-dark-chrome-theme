@@ -1,0 +1,80 @@
+<!doctype html><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* One Dark promo tile — 440×280, Chrome Web Store "small promo tile".
+     Palette is theme/manifest.json only; per rule 3 the sole hue is ntp_link blue. */
+  :root {
+    --frame:#21252b; --frame-dark:#1c1f24; --toolbar:#282c34; --raised:#3e4451;
+    --text-bright:#dcdfe4; --mono-1:#abb2bf; --mono-2:#828997; --blue:#61afef;
+    --omnibox:#353b45;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:440px;height:280px;overflow:hidden}
+  body{
+    background:var(--frame);
+    font-family:'Geist',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+    display:flex;align-items:center;
+  }
+  .copy{padding:0 0 0 34px;flex:0 0 auto;width:186px}
+  .mark{font-size:33px;font-weight:600;letter-spacing:-.9px;color:var(--text-bright);line-height:1.05}
+  .rule{width:30px;height:3px;border-radius:2px;background:var(--blue);margin:13px 0 12px}
+  .sub{font-size:12.5px;font-weight:400;line-height:1.45;color:var(--mono-2);letter-spacing:.1px}
+
+  /* Stylised Chrome window, bleeding off the right edge. */
+  .win{flex:1 1 auto;margin-left:14px;align-self:stretch;display:flex;align-items:center}
+  .frame{width:100%;height:186px;border-radius:9px 0 0 9px;overflow:hidden;
+         background:var(--frame);box-shadow:0 0 0 1px #171a1f, 0 14px 34px rgba(0,0,0,.42)}
+  .tabs{height:34px;display:flex;align-items:flex-end;padding-left:9px;gap:3px;background:var(--frame)}
+  .tab{height:27px;width:74px;border-radius:7px 7px 0 0;display:flex;align-items:center;
+       padding:0 8px;gap:5px}
+  .tab.on{background:var(--toolbar)}
+  .fav{width:8px;height:8px;border-radius:2px;flex:0 0 auto}
+  .bar{height:4px;border-radius:2px}
+  .toolbar{height:38px;background:var(--toolbar);display:flex;align-items:center;padding:0 10px;gap:7px}
+  .nav{width:9px;height:9px;border-radius:50%;background:var(--mono-1);opacity:.55;flex:0 0 auto}
+  .omni{flex:1;height:19px;border-radius:10px;background:var(--omnibox);
+        display:flex;align-items:center;padding:0 9px}
+  .bookmarks{height:24px;background:var(--toolbar);display:flex;align-items:center;
+             padding:0 11px;gap:12px;border-top:1px solid rgba(0,0,0,.16)}
+  .ntp{height:90px;background:var(--frame);display:flex;flex-direction:column;
+       align-items:center;justify-content:center;gap:9px}
+  .tile{width:34px;height:34px;border-radius:8px;background:var(--raised)}
+  .row{display:flex;gap:9px}
+</style>
+<div class="copy">
+  <div class="mark">One&nbsp;Dark</div>
+  <div class="rule"></div>
+  <div class="sub">Atom's palette,<br>for Chrome.</div>
+</div>
+<div class="win">
+  <div class="frame">
+    <div class="tabs">
+      <div class="tab on">
+        <span class="fav" style="background:var(--blue)"></span>
+        <span class="bar" style="width:34px;background:var(--text-bright)"></span>
+      </div>
+      <div class="tab">
+        <span class="fav" style="background:var(--mono-2);opacity:.7"></span>
+        <span class="bar" style="width:30px;background:var(--mono-2)"></span>
+      </div>
+      <div class="tab">
+        <span class="fav" style="background:var(--mono-2);opacity:.7"></span>
+        <span class="bar" style="width:26px;background:var(--mono-2)"></span>
+      </div>
+    </div>
+    <div class="toolbar">
+      <span class="nav"></span><span class="nav"></span><span class="nav"></span>
+      <span class="omni"><span class="bar" style="width:88px;background:var(--mono-1);opacity:.75"></span></span>
+    </div>
+    <div class="bookmarks">
+      <span class="bar" style="width:30px;background:var(--mono-1);opacity:.8"></span>
+      <span class="bar" style="width:22px;background:var(--mono-1);opacity:.8"></span>
+      <span class="bar" style="width:34px;background:var(--mono-1);opacity:.8"></span>
+    </div>
+    <div class="ntp">
+      <div class="row"><span class="tile"></span><span class="tile"></span><span class="tile"></span></div>
+      <span class="bar" style="width:56px;height:5px;background:var(--blue)"></span>
+    </div>
+  </div>
+</div>

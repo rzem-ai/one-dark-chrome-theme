@@ -14,6 +14,7 @@ the repo is tooling around that one file.
 ```sh
 node scripts/validate-theme.mjs          # defaults to theme/manifest.json; takes an optional path arg
 ./scripts/package.sh                     # validates, then → dist/one-dark-<version>.zip
+./scripts/render-store-assets.sh         # store/*.html → store/*.png at exact listing sizes
 ```
 
 No dependencies and no `package.json`. Node 24 and `zip` are the only requirements.
@@ -48,6 +49,11 @@ the passing state, not something to fix. Only errors set a non-zero exit.
   Store expects `manifest.json` at top level, not under `theme/`), excluding dotfiles,
   `README.md` and `Cached Theme.pak` (Chrome writes that into `theme/` when the directory
   is loaded unpacked), then asserts the root `manifest.json` is present.
+- **`store/`** — Chrome Web Store listing material, not shipped in the extension:
+  `listing.md` (copy, category, privacy answers) and the promo tile / store icon as HTML
+  rendered to PNG by `scripts/render-store-assets.sh`, which fails if the output is not
+  exactly 440×280 / 128×128. Note the store icon is a *listing* asset uploaded in the
+  console — `icons` in a theme manifest is an error, so the two are unrelated.
 - **`.github/workflows/build.yml`** — Node 24. Validates and packages on every push and
   PR. A push to `main` publishes a GitHub Release tagged `v<manifest version>`; a `v*` tag
   push does the same and additionally fails if the tag disagrees with the manifest. Both
