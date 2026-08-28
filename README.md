@@ -71,3 +71,8 @@ git tag v1.1.0 && git push origin v1.1.0
 rules, which keys are themable but deliberately unset (the omnibox pill — `4a` draws it
 as Chrome-derived, so there's no designed value to ship), what Chrome won't let a theme
 touch at all, the failure-mode table, a testing checklist, and Web Store notes.
+
+## Licence
+
+[MIT](LICENSE). The One Dark palette originates with
+[Atom's one-dark-syntax and one-dark-ui themes](https://github.com/atom/atom), also MIT.
