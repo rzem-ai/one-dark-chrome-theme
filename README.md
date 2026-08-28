@@ -73,12 +73,15 @@ with the manifest — a mismatched version ships a zip the Web Store rejects as 
 
 ## Publishing
 
-[`store/`](store) holds the Web Store material: [`listing.md`](store/listing.md) with the
-copy and privacy answers, plus the 440×280 promo tile and 128×128 store icon rendered
-from HTML by `./scripts/render-store-assets.sh`. The step-by-step submission checklist is
-in [`theme/README.md`](theme/README.md#web-store-notes). Screenshots are the one asset
-that cannot be generated — the theme paints browser chrome, so they have to be captured
-from a real themed window.
+**[`store/publishing.md`](store/publishing.md) is the walkthrough** — every console and
+documentation link in the order you need them.
+
+[`store/`](store) also holds the material those steps ask for:
+[`listing.md`](store/listing.md) with the copy and privacy answers, plus the 440×280
+promo tile and 128×128 store icon rendered from HTML by
+`./scripts/render-store-assets.sh`. Screenshots are the one asset that cannot be
+generated — the theme paints browser chrome, so they have to be captured from a real
+themed window.
 
 ## Notes
 

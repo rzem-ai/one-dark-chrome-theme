@@ -139,8 +139,9 @@ one at a time.
 
 ## Web Store notes
 
-Listing copy, the promo tile and the store icon live in [`store/`](../store); regenerate
-the images with `./scripts/render-store-assets.sh`. Submission checklist:
+[`store/publishing.md`](../store/publishing.md) is the linked walkthrough. Listing copy,
+the promo tile and the store icon live in [`store/`](../store); regenerate the images
+with `./scripts/render-store-assets.sh`. Checklist in brief:
 
 1. **Register** at the [Developer Dashboard](https://chrome.google.com/webstore/devconsole)
    — one-time fee, and a verified contact email, before anything can be published.

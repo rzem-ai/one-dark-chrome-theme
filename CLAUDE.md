@@ -50,7 +50,7 @@ the passing state, not something to fix. Only errors set a non-zero exit.
   `README.md` and `Cached Theme.pak` (Chrome writes that into `theme/` when the directory
   is loaded unpacked), then asserts the root `manifest.json` is present.
 - **`store/`** — Chrome Web Store listing material, not shipped in the extension:
-  `listing.md` (copy, category, privacy answers) and the promo tile / store icon as HTML
+  `publishing.md` (the linked, ordered walkthrough), `listing.md` (copy, category, privacy answers) and the promo tile / store icon as HTML
   rendered to PNG by `scripts/render-store-assets.sh`, which fails if the output is not
   exactly 440×280 / 128×128. Note the store icon is a *listing* asset uploaded in the
   console — `icons` in a theme manifest is an error, so the two are unrelated.
