@@ -1,6 +1,6 @@
 # One Dark — Chrome theme
 
-[![build](https://github.com/alexrzem/one-dark-chrome-theme/actions/workflows/build.yml/badge.svg)](https://github.com/alexrzem/one-dark-chrome-theme/actions/workflows/build.yml)
+[![build](https://github.com/rzem-ai/one-dark-chrome-theme/actions/workflows/build.yml/badge.svg)](https://github.com/rzem-ai/one-dark-chrome-theme/actions/workflows/build.yml)
 
 A Google Chrome theme in the Atom **One Dark** palette. It repaints the frame, tab
 strip, toolbar, bookmarks bar and New Tab page.
