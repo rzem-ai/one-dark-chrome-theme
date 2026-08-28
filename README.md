@@ -33,7 +33,7 @@ node scripts/validate-theme.mjs   # check the manifest
 ./scripts/package.sh              # → dist/one-dark-<version>.zip
 ```
 
-No dependencies; Node 22 and `zip` are all you need.
+No dependencies; Node 24 and `zip` are all you need.
 
 `scripts/validate-theme.mjs` checks every key against the tables Chrome actually reads
 — `kOverwritableColorTable`, `kTintTable`, `kDisplayProperties` and the image table in
@@ -54,16 +54,20 @@ mono-2 step in the text ramp.
 ## CI
 
 `.github/workflows/build.yml` validates and packages on every push and pull request,
-uploading the zip as a build artifact.
+uploading the zip as a build artifact. It runs on Node 24.
 
-Pushing a `v*` tag additionally publishes a GitHub Release with the zip attached. The
-tag must match `theme/manifest.json`'s `version` or the release job fails — a mismatched
-version ships a zip the Web Store rejects as a duplicate.
+Pushing to `main` publishes a GitHub Release with the zip attached, tagged `v<version>`
+from `theme/manifest.json`. That version is the source of truth: if a release for it
+already exists the job logs a notice and stops, so a release goes out exactly when you
+bump the manifest — not on every push.
 
 ```sh
-# bump theme/manifest.json to 1.1.0 first
-git tag v1.1.0 && git push origin v1.1.0
+# bump theme/manifest.json to 1.1.0, then
+git commit -am 'One Dark 1.1.0' && git push origin main
 ```
+
+Pushing a `v*` tag publishes the same way, and additionally fails if the tag disagrees
+with the manifest — a mismatched version ships a zip the Web Store rejects as a duplicate.
 
 ## Notes
 

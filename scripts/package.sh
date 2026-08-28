@@ -14,8 +14,11 @@ mkdir -p dist
 rm -f "$out"
 
 # The zip must contain manifest.json at its root, not a theme/ directory.
-# README.md is developer docs — it ships to no one.
-( cd theme && zip -q -r -X "../$out" . -x '.*' -x '__MACOSX/*' -x 'README.md' )
+# README.md is developer docs — it ships to no one. "Cached Theme.pak" is written
+# into theme/ by Chrome whenever the directory is loaded unpacked; it is a local
+# build artefact and must not reach the Web Store.
+( cd theme && zip -q -r -X "../$out" . \
+    -x '.*' -x '__MACOSX/*' -x 'README.md' -x 'Cached Theme.pak' )
 
 if ! unzip -l "$out" | grep -q ' manifest.json$'; then
   echo "error: $out has no manifest.json at its root" >&2
