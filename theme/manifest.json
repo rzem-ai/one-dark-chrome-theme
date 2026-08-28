@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "One Dark",
+  "version": "1.0.0",
+  "description": "The Atom One Dark palette for Chrome.",
+  "theme": {
+    "colors": {
+      "frame": [33, 37, 43],
+      "frame_inactive": [28, 31, 36],
+      "frame_incognito": [28, 31, 36],
+      "frame_incognito_inactive": [28, 31, 36],
+      "toolbar": [40, 44, 52],
+      "background_tab": [33, 37, 43],
+      "background_tab_inactive": [28, 31, 36],
+      "background_tab_incognito": [28, 31, 36],
+      "background_tab_incognito_inactive": [28, 31, 36],
+      "tab_text": [220, 223, 228],
+      "tab_background_text": [130, 137, 151],
+      "tab_background_text_inactive": [130, 137, 151],
+      "tab_background_text_incognito": [130, 137, 151],
+      "tab_background_text_incognito_inactive": [130, 137, 151],
+      "toolbar_button_icon": [171, 178, 191],
+      "bookmark_text": [171, 178, 191],
+      "button_background": [62, 68, 81],
+      "ntp_background": [33, 37, 43],
+      "ntp_header": [40, 44, 52],
+      "ntp_text": [171, 178, 191],
+      "ntp_link": [97, 175, 239]
+    }
+  }
+}

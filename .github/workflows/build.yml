@@ -1,0 +1,73 @@
+name: build
+
+on:
+  push:
+    branches: ['**']
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate manifest
+        run: node scripts/validate-theme.mjs theme/manifest.json
+
+      - name: Package
+        run: ./scripts/package.sh
+
+      - name: Read theme version
+        id: theme
+        run: echo "version=$(node -p 'require("./theme/manifest.json").version')" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: one-dark-${{ steps.theme.outputs.version }}
+          path: dist/*.zip
+          if-no-files-found: error
+
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # A tag whose version disagrees with the manifest would ship a zip the
+      # Web Store rejects as a duplicate version, so fail before publishing.
+      - name: Check tag matches manifest version
+        run: |
+          manifest=$(node -p 'require("./theme/manifest.json").version')
+          tag="${GITHUB_REF_NAME#v}"
+          if [ "$manifest" != "$tag" ]; then
+            echo "::error::tag v$tag does not match theme/manifest.json version $manifest — bump the manifest or retag"
+            exit 1
+          fi
+          echo "version=$manifest" >> "$GITHUB_ENV"
+
+      - name: Package
+        run: ./scripts/package.sh
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "dist/one-dark-${version}.zip" \
+            --title "One Dark ${version}" \
+            --notes "Chrome theme, version ${version}. Download the zip and upload it at https://chrome.google.com/webstore/devconsole, or unzip and load it unpacked via chrome://extensions."
